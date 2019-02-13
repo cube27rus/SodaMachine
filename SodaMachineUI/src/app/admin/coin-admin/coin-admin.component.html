@@ -1,0 +1,41 @@
+<div class="row mt-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Доступность</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coin of coinsInMachine">
+        <td>{{coin.id}}</td>
+        <td>{{coin.coin.name}}</td>
+        <td>{{coin.count}}</td>
+        <td>{{coin.coin.isAvalible}}</td>
+        <td><button class="btn btn-success" (click)="initEditForm(coin)">Редактировать</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row mb-5">
+  <div class="col-md-6" *ngIf="editCoinForm">
+    <form [formGroup]="editCoinForm">
+      <h3>Редактировать монеты</h3>
+      <input type="text" formControlName="id" class="d-none" readonly>
+      <div class="form-group">
+        <label>
+          Количество:
+        </label>        
+        <input type="text" formControlName="count" class="form-control">
+      </div>
+      <div class="form-check">
+        <input type="checkbox" formControlName="enabled" [checked]="editCoinForm.controls['enabled'].value" class="form-check-input" id="enabled">
+        <label class="form-check-label" for="enabled">Доступность</label>
+      </div>
+      <button type="button" (click)="putCoin()" class="btn btn-info mt-3">Изменить</button>
+    </form>
+  </div>
+</div>

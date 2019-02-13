@@ -1,0 +1,9 @@
+<div class="card m-2 overflow-hidden" style="width: 18rem;">
+  <img class="img-thumbnail soda-img" src="{{soda.img}}" alt="Card image cap" (click)="selectSoda(soda)">
+  <div class="card-body">
+    <h5 class="card-title">{{soda.name}}</h5>
+    <p class="card-text">Цена: {{soda.price}}</p>
+    <p class="card-text">Доступно: {{soda.amount}} шт.</p>
+    <button class="btn btn-primary" (click)="selectSoda(soda)" [ngClass]="{'disabled': (soda.amount === 0)}" >Выбрать</button>
+  </div>
+</div>

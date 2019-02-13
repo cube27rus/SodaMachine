@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="border border-success rounded p-3 m-2">
+    <app-cash></app-cash>
+    <hr>
+    <div *ngIf="selectedSodas && selectedSodas.length > 0">
+      <h4>Вы выбрали:</h4>
+      <div class="d-flex flex-wrap">
+        <div *ngFor="let soda of selectedSodas">
+          <app-selected-soda-card [soda]='soda'></app-selected-soda-card>
+        </div>
+      </div>
+      <button class="btn btn-info" (click)="madeOrder()">Заказать</button>
+    </div>
+  </div>
+  <hr>
+  <div class="list-content">
+    <div *ngFor="let soda of sodas">
+      <app-soda-card [soda]='soda'></app-soda-card>
+    </div>
+  </div>
+</div>

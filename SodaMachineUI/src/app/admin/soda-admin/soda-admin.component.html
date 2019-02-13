@@ -1,0 +1,89 @@
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Картинка</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let soda of sodas">
+        <th scope="row">{{soda.id}}</th>
+        <td>{{soda.name}}</td>
+        <td>{{soda.price}}</td>
+        <td>{{soda.amount}}</td>
+        <td><img src="{{soda.img}}" alt="{{soda.name}}" class="sodaImg"></td>
+        <td><button class="btn btn-success" (click)="initEditForm(soda)">Редактировать</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <form [formGroup]="newSodaForm">
+      <h3>Новый напиток</h3>
+      <div class="form-group">
+        <label>
+          Название:
+        </label>
+        <input type="text" formControlName="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          Картинка:
+        </label>
+        <input type="text" formControlName="img" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          Цена:
+        </label>
+        <input type="number" formControlName="price" min="0" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          Кол-во:
+        </label>
+        <input type="text" formControlName="amount" min="0" class="form-control">
+      </div>
+      <div *ngIf="!sodaForm?.valid && sodaForm?.dirty" class="text-danger"> Необходимо заполнить все поля.</div>
+      <button type="button" (click)="addSoda()" class="btn btn-info">Создать</button>
+    </form>
+  </div>
+  <div class="col-md-6" *ngIf="editSodaForm">
+    <form [formGroup]="editSodaForm">
+      <h3>Редактировать напиток</h3>
+      <input type="text" formControlName="id" class="d-none" readonly>
+      <div class="form-group">
+        <label>
+          Название:
+        </label>
+        <input type="text" formControlName="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          Картинка:
+        </label>
+        <input type="text" formControlName="img" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          Цена:
+        </label>
+        <input type="number" formControlName="price" min="0" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          Кол-во:
+        </label>
+        <input type="text" formControlName="amount" min="0" class="form-control">
+      </div>
+      <div *ngIf="!sodaForm?.valid && sodaForm?.dirty" class="text-danger"> Необходимо заполнить все поля.</div>
+      <button type="button" (click)="putSoda()" class="btn btn-info">Изменить</button>
+    </form>
+  </div>
+</div>
